@@ -1,6 +1,7 @@
 Django==4.0.2
 django_environ==0.4.5
+django_phonenumber_field==6.1.0
 djangorestframework==3.13.1
 djangorestframework_simplejwt==5.2.2
-PyJWT
+pytz==2023.3
 rest_framework_simplejwt==0.0.1
