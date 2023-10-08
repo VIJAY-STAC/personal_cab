@@ -1,6 +1,7 @@
 
 import uuid
 from django.db import models
+from django.conf import settings
 
 from users.models import User
 
@@ -56,6 +57,20 @@ class PrimaryUUIDTimeStampedModel(PrimaryUUIDModel, TimeStampedModel):
     class Meta(object):
         abstract = True
 
+
+class File(PrimaryUUIDTimeStampedModel):
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL
+    )
+    name = models.CharField(max_length=120, null=False, blank=False)
+    key = models.CharField(max_length=300, null=True, blank=True)
+    url = models.URLField(blank=False, null=False)
+    size = models.PositiveIntegerField(default=0)
+    file_type = models.CharField(max_length=120, null=False, blank=False)
+
+    def __str__(self):
+        return self.url
+
 class Cars(PrimaryUUIDTimeStampedModel):
     name = models.CharField(max_length=50, blank=False)
     milege = models.DecimalField(max_digits=1000,decimal_places=2, blank=True)
@@ -69,6 +84,7 @@ class Cars(PrimaryUUIDTimeStampedModel):
     image = models.ImageField(upload_to='cars/', blank=True)
     imgae_url = models.CharField(max_length=50000, blank=True)
     car_number = models.CharField(max_length=50, blank=True)
+    car_images = models.ManyToManyField(File, related_name="car_images", null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -205,3 +221,5 @@ class ProfitLoss(PrimaryUUIDTimeStampedModel):
         else:
             self.business_status='profit'
         super().save(*args, **kwargs)  
+
+

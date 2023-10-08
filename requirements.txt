@@ -5,3 +5,41 @@ djangorestframework==3.13.1
 djangorestframework_simplejwt==5.2.2
 pytz==2023.3
 rest_framework_simplejwt==0.0.1
+
+
+
+# /home/ubuntu/project/cabenv
+
+# /home/ubuntu/project/personal_cab
+
+
+# [Unit]
+# Description=gunicorn daemon
+# Requires=gunicorn.socket
+# After=network.target
+
+# [Service]
+# User=ubuntu
+# Group=www-data
+# WorkingDirectory=/home/ubuntu/project/personal_cab
+# ExecStart=/home/ubuntu/project/cabenv/bin/gunicorn \
+#           --access-logfile - \
+#           --workers 3 \
+#           --bind unix:/run/gunicorn.sock \
+#           cars.wsgi:application
+
+# [Install]
+# WantedBy=multi-user.target
+
+
+# server {
+#     listen 80;
+#     server_name 3.109.58.116;
+
+
+
+#     location / {
+#         include proxy_params;
+#         proxy_pass http://unix:/run/gunicorn.sock;
+#     }
+# }

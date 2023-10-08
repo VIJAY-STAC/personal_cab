@@ -13,7 +13,10 @@ from django.contrib.auth.hashers import check_password
 from rest_framework import status, permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+import base64
+from django.utils import timezone
 
+from .utils import car_image_upload
 
 from .serializers import *
 
@@ -58,6 +61,42 @@ class CabsViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         return Response({},status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @action(detail=False, methods=["post"])
+    def upload_images(self, request, *args, **kwargs):
+        CAR_IMAGES_KEY = "car_images/{image_name}.jpeg"
+        car_id = request.query_params.get("car_id",None)
+        if car_id==None:
+            return Response({"error":"secondary_id can not be none."}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+           car = Cars.objects.get(id=car_id)
+        except Cars.DoesNotExist:
+            return Response({"error":" Cars does not exist with given id."},status=status.HTTP_400_BAD_REQUEST)
+
+
+        serializer = FileUploadSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        file = serializer.validated_data.get("image")[0]
+
+        opened_file = file.open()
+        base64_file = base64.b64encode(opened_file.read()).decode("utf-8")
+        opened_file.close()
+        key = CAR_IMAGES_KEY.format(
+            image_name=str(car.id)[24:]
+            + "-"
+            + str(int(timezone.now().timestamp()))
+        )
+
+        image_id = car_image_upload(
+            car_id=str(car.id),
+            base64_file=base64_file,
+            key=key,
+            file_name=str(file.name),
+            file_type=file.content_type,
+            file_size=file.size,
+        )
+
+        return Response({"message":"image uploaded successfully.","image_id":image_id}, status=status.HTTP_200_OK)
 
 
     

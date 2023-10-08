@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import Cars, ProfitLoss, City, Trips, TripTimeTable, Booking, TripStatus
 import pytz
 class CarsSerializer(serializers.ModelSerializer):
+
+    car_images = serializers.SerializerMethodField()
     class Meta:
         model = Cars
         fields = (
@@ -9,8 +11,15 @@ class CarsSerializer(serializers.ModelSerializer):
             'name',
             'milege',
             "driver",
-            "image",
+            "car_number",
+            "car_images"
+
         )
+    def get_car_images(self, obj):
+        car_images = []
+        for image in obj.car_images.all():
+            car_images.append(image.url)
+        return car_images
 
 class ProfitLossSerializer(serializers.ModelSerializer):
     trip_details = serializers.SerializerMethodField()
@@ -78,6 +87,7 @@ class TripTimeTableSerializer(serializers.ModelSerializer):
     date = serializers.SerializerMethodField()
     time = serializers.SerializerMethodField()
     amt = serializers.SerializerMethodField()
+    car_image = serializers.SerializerMethodField()
 
     class Meta:
         model = TripTimeTable
@@ -89,7 +99,8 @@ class TripTimeTableSerializer(serializers.ModelSerializer):
             'date',
             'time',
             "is_active",
-            "amt"
+            "amt",
+            "car_image"
         )
     
     def get_date(self, obj):
@@ -112,6 +123,12 @@ class TripTimeTableSerializer(serializers.ModelSerializer):
     def get_amt(self, obj):
 
         return obj.trip.amount    
+
+    def get_car_image(self, obj):
+        car_images = []
+        for image in obj.car.car_images.all():
+            car_images.append(image.url)
+        return car_images[0]
 
 
 class BookingSerializer(serializers.ModelSerializer):
@@ -210,3 +227,25 @@ class TripStatusSerializer(serializers.ModelSerializer):
         )
 
 
+class FileUploadSerializer(serializers.Serializer):
+    image = serializers.ListField(child=serializers.FileField())
+
+    def validate(self, data):
+
+        response = []
+        images = data.get("image")
+
+        for item in images:
+
+            item_response = {}
+
+            if not "image" in item.content_type:
+                item_response = {**item_response, item.name: "not_image_file"}
+
+            if item_response != {}:
+                response.append(item_response)
+
+        if response != []:
+            raise serializers.ValidationError(response)
+
+        return data

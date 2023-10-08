@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'cabs',
     'corsheaders',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,14 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=600),  # Set the desired expiration time
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
+
+AWS_ACCESS_KEY_ID = 'AKIA45YEU5W4HI25BTXN '
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'personalcars'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'ap-south-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
