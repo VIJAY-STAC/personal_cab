@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 #
-sudo rm -rf /home/ubuntu/blogrepo/*
+sudo rm -rf /home/ubuntu/personal_cab/*

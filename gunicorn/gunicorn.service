@@ -5,11 +5,11 @@ After=network.target
 [Service]
 User=root
 Group=www-data
-WorkingDirectory=/home/ubuntu/blogrepo
+WorkingDirectory=/home/ubuntu/personal_cab
 ExecStart=/home/ubuntu/env/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
-          blog.wsgi:application
+          cars.wsgi:application
 [Install]
 WantedBy=multi-user.target
