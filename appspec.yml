@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files: 
   - source: /
-    destination: /home/ubuntu/blogrepo
+    destination: /home/ubuntu/personal_car
 permissions:
-  - object: /home/ubuntu/blogrepo
+  - object: /home/ubuntu/personal_car
     owner: ubuntu
     group: ubuntu
 hooks:
