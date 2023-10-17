@@ -1,9 +1,15 @@
-#!/usr/bin/bash 
+#!/bin/bash
 
-sed -i 's/\[]/\["13.232.225.109"]/' /home/ubuntu/personal_car/cars/settings.py
+# Change to the correct directory where your application code is located
+cd /home/ubuntu/personal_car
 
+# Update settings.py file
+sed -i 's/\[]/\["13.232.225.109"]/' cars/settings.py
+
+# Print the current working directory for debugging
 pwd
 
+# Start the application commands
 echo "Starting the app"
 python3 manage.py migrate 
 echo "Migrations done"
@@ -11,15 +17,3 @@ python3 manage.py makemigrations
 python3 manage.py collectstatic
 sudo service gunicorn restart
 sudo service nginx restart
-#sudo tail -f /var/log/nginx/error.log
-#sudo systemctl reload nginx
-#sudo tail -f /var/log/nginx/error.log
-#sudo nginx -t
-#sudo systemctl restart gunicorn
-#sudo systemctl status gunicorn
-#sudo systemctl status nginx
-# Check the status
-#systemctl status gunicorn
-# Restart:
-#systemctl restart gunicorn
-#sudo systemctl status nginx
