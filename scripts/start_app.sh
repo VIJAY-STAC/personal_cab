@@ -20,7 +20,7 @@ echo "Starting the app"
 python manage.py migrate 
 echo "Migrations done"
 python manage.py makemigrations
-python manage.py collectstatic
+
 
 # Restart services
 sudo service gunicorn restart
