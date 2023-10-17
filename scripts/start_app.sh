@@ -2,7 +2,11 @@
 
 sed -i 's/\[]/\["13.232.225.109"]/' /home/ubuntu/personal_car/cars/settings.py
 
+pwd
+
+echo "Starting the app"
 python3 manage.py migrate 
+echo "Migrations done"
 python3 manage.py makemigrations     
 python3 manage.py collectstatic
 sudo service gunicorn restart
