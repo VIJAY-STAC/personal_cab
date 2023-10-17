@@ -2,9 +2,9 @@
 
 sed -i 's/\[]/\["13.232.225.109"]/' /home/ubuntu/personal_car/cars/settings.py
 
-python manage.py migrate 
-python manage.py makemigrations     
-python manage.py collectstatic
+python3 manage.py migrate 
+python3 manage.py makemigrations     
+python3 manage.py collectstatic
 sudo service gunicorn restart
 sudo service nginx restart
 #sudo tail -f /var/log/nginx/error.log
