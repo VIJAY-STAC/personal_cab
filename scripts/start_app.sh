@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # Change to the correct directory where your application code is located
-cd /home/ubuntu/personal_car
+cd /home/ubuntu/
+source /env/bin/activate
+
+cd /personal_car
 
 # Update settings.py file
 sed -i 's/\[]/\["13.232.225.109"]/' cars/settings.py
