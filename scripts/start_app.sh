@@ -10,7 +10,7 @@ pwd
 cd /home/ubuntu/personal_car
 
 # Update the settings.py file
-sed -i 's/\[]/\["13.232.225.109"]/' cars/settings.py
+sed -i 's/\[]/\["13.127.99.50"]/' cars/settings.py
 
 # Print the current working directory for debugging
 pwd
