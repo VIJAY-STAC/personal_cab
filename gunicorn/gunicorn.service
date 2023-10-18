@@ -3,7 +3,7 @@ Description=gunicorn daemon
 Requires=gunicorn.socket
 After=network.target
 [Service]
-User=root
+User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/personal_car
 ExecStart=/home/ubuntu/env/bin/gunicorn \
