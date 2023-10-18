@@ -128,6 +128,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def logout(self, request, *args, **kwargs):
+        
         try:
             refresh_token = request.data.get("refresh_token")  # Use get to avoid KeyError
             if refresh_token:
