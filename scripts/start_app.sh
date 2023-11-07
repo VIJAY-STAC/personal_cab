@@ -7,7 +7,7 @@ source /home/ubuntu/env/bin/activate
 echo "hello2 "
 pwd
 # Change to the directory where your Django project is located
-cd /home/ubuntu/personal_car
+cd /home/ubuntu/personal_cab
 
 # Update the settings.py file
 sed -i 's/\[]/\["3.109.32.40"]/' cars/settings.py

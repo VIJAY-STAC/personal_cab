@@ -5,7 +5,7 @@ sudo systemctl daemon-reload
 sudo rm -f /etc/nginx/sites-enabled/cars
 
 
-sudo cp /home/ubuntu/personal_car/nginx/nginx.conf /etc/nginx/sites-available/cars
+sudo cp /home/ubuntu/personal_cab/nginx/nginx.conf /etc/nginx/sites-available/cars
 sudo ln -s /etc/nginx/sites-available/cars /etc/nginx/sites-enabled/
 #sudo ln -s /etc/nginx/sites-available/cars /etc/nginx/sites-enabled
 #sudo nginx -t
