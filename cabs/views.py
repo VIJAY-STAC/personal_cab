@@ -370,7 +370,7 @@ class BookingViewSet(viewsets.ModelViewSet):
         if id==None:
             return Response({"error":"please provide id"},status=status.HTTP_400_BAD_REQUEST)
         try:
-            queryset = Booking.objects.filter(customer_id=id)
+            queryset = Booking.objects.filter(customer_id=id).order_by("-created_at")
         except Booking.DoesNotExist:
             return Response({"error":"Booking does not exist with geiven id."},status=status.HTTP_400_BAD_REQUEST)
         serializer = BookingHistorySerializer(queryset, many=True)
