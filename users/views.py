@@ -125,17 +125,3 @@ class UserViewSet(viewsets.ModelViewSet):
         cache.delete(otp_key)
 
         return Response({"message":"Password changed succesfully."}, status=status.HTTP_200_OK)
-
-    @action(detail=False, methods=['post'])
-    def logout(self, request, *args, **kwargs):
-        
-        try:
-            refresh_token = request.data.get("refresh_token")  # Use get to avoid KeyError
-            if refresh_token:
-                token = RefreshToken(refresh_token)
-                token.blacklist()
-                return Response({"message": "Logout successful"}, status=status.HTTP_200_OK)
-            else:
-                return Response({"message": "Refresh token not provided"}, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            return Response({"message": "Logout failed"}, status=status.HTTP_400_BAD_REQUEST)

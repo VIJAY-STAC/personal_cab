@@ -210,6 +210,7 @@ class TripsViewSet(viewsets.ModelViewSet):
 class TripTimeTableViewSet(viewsets.ModelViewSet):
     model = TripTimeTable
     serializer_class = TripTimeTableSerializer
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = Trips.objects.all()
