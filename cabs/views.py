@@ -412,10 +412,6 @@ class TripStatusViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         """
         We can not delete a TripStatus.
-
-        
-
-        
         """
         return Response({},status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
