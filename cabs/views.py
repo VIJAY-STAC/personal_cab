@@ -414,6 +414,8 @@ class TripStatusViewSet(viewsets.ModelViewSet):
         We can not delete a TripStatus.
 
         
+
+        
         """
         return Response({},status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
