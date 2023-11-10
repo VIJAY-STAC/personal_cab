@@ -10,8 +10,8 @@ rest_framework_simplejwt==0.0.1
 django-cors-headers
 phonenumbers
 Pillow
-
-
+django-celery==3.1.17
+redis
 # /home/ubuntu/project/cabenv
 
 # /home/ubuntu/project/personal_cab

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
+from kombu import Exchange, Queue
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -196,3 +197,21 @@ CORS_ALLOW_HEADERS = (
     "timezone",
     "sms_disabled",
 )
+
+# settings.py
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_TIMEZONE = 'UTC'
+CELERY_RESULT_PERSISTENT = True
+
+CELERY_BEAT_SCHEDULE = {
+    # 'my-scheduled-task': {
+    #     'task': 'users.tasks.send_email_via_celery',
+    #     'schedule': 10.0,  # Run every 60 seconds (adjust as needed)
+    # },
+     'my-scheduled-task2': {
+        'task': 'users.tasks.add',
+        'schedule': 10.0,  # Run every 60 seconds (adjust as needed)
+    },
+}

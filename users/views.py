@@ -12,6 +12,8 @@ from rest_framework.decorators import action
 from django.contrib.auth.hashers import check_password
 from rest_framework_simplejwt.tokens import RefreshToken
 
+from .tasks import send_email_via_celery
+
 from .utils import generate_otp_and_key, send_custom_email, verify_otp
 
 
@@ -49,6 +51,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def login(self, request, *args, **kwargs):
+        result = send_email_via_celery.delay() 
         try:
             email = request.data['email']
             password = request.data['password']
