@@ -51,7 +51,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def login(self, request, *args, **kwargs):
-        result = send_email_via_celery.delay() 
+        # result = send_email_via_celery.delay() 
         try:
             email = request.data['email']
             password = request.data['password']
