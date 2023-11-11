@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 
-sed -i 's/\[]/\["15.207.20.204"]/' /home/ubuntu/personal_cab/cars/settings.py
+sed -i 's/\[]/\["bestdeveloper.in"]/' /home/ubuntu/personal_cab/cars/settings.py
 
 python manage.py migrate 
 python manage.py makemigrations     
