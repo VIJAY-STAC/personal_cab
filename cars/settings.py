@@ -173,10 +173,11 @@ AWS_S3_VERITY = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-# CORS_ALLOWED_ORIGINS = [
+CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:63241",
-#     "https://master--cheerful-horse-860b1d.netlify.app"
-# ]
+#     "https://master--cheerful-horse-860b1d.netlify.app",
+ "https://master--papaya-cassata-8e5de6.netlify.app/"
+]
 
 
 # CORS_ALLOW_CREDENTIALS = True
