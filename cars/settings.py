@@ -88,8 +88,12 @@ WSGI_APPLICATION = 'cars.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'testcar', 
+        'USER': 'vijay',
+        'PASSWORD': 'vijay1234',
+        'HOST': 'personalcar.crrv0hzgilew.ap-south-1.rds.amazonaws.com', 
+        'PORT': '5432',
     }
 }
 
@@ -176,7 +180,8 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:63241",
 #     "https://master--cheerful-horse-860b1d.netlify.app",
- "https://master--papaya-cassata-8e5de6.netlify.app/"
+#  "https://master--papaya-cassata-8e5de6.netlify.app/"
+"https://*"
 ]
 
 

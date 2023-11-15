@@ -85,6 +85,8 @@ class Cars(PrimaryUUIDTimeStampedModel):
     imgae_url = models.CharField(max_length=50000, blank=True)
     car_number = models.CharField(max_length=50, blank=True)
     car_images = models.ManyToManyField(File, related_name="car_images", null=True, blank=True)
+    review = models.CharField(max_length=50, blank=True, null=True )
+    review2 = models.CharField(max_length=50, blank=True, null=True )
 
     def __str__(self):
         return self.name
