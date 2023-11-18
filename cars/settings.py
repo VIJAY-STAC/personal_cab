@@ -86,25 +86,25 @@ WSGI_APPLICATION = 'cars.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'testcar', 
-#         'USER': 'vijay',
-#         'PASSWORD': 'vijay1234',
-#         'HOST': 'personalcar.crrv0hzgilew.ap-south-1.rds.amazonaws.com', 
-#         'PORT': '5432',
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        'ATOMIC_REQUESTS': True,
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cab', 
+        'USER': 'vijay',
+        'PASSWORD': 'vijay1234',
+        'HOST': 'personal-car.crrv0hzgilew.ap-south-1.rds.amazonaws.com', 
+        'PORT': '5432',
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ATOMIC_REQUESTS': True,
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

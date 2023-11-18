@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from phonenumber_field.modelfields import PhoneNumberField
 
-
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 
@@ -69,8 +69,8 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-class User(AbstractBaseUser,PrimaryUUIDTimeStampedModel):
-
+class User(AbstractUser):
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
     email = models.EmailField(
         verbose_name="email",
         max_length=255,
@@ -85,22 +85,9 @@ class User(AbstractBaseUser,PrimaryUUIDTimeStampedModel):
     address = models.CharField(max_length=100, null=True)
     phone_number = PhoneNumberField(blank=True, null=True)
     
-
-    objects = MyUserManager()
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["date_of_birth","name"]
-
+    REQUIRED_FIELDS=()
+    USERNAME_FIELD=('email')
     def __str__(self):
         return self.email
 
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
-
+  
