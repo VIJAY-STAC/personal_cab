@@ -86,17 +86,25 @@ WSGI_APPLICATION = 'cars.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'testcar', 
+#         'USER': 'vijay',
+#         'PASSWORD': 'vijay1234',
+#         'HOST': 'personalcar.crrv0hzgilew.ap-south-1.rds.amazonaws.com', 
+#         'PORT': '5432',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'testcar', 
-        'USER': 'vijay',
-        'PASSWORD': 'vijay1234',
-        'HOST': 'personalcar.crrv0hzgilew.ap-south-1.rds.amazonaws.com', 
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        'ATOMIC_REQUESTS': True,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -181,7 +189,7 @@ CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:63241",
 #     "https://master--cheerful-horse-860b1d.netlify.app",
 #  "https://master--papaya-cassata-8e5de6.netlify.app/"
-"https://*"
+# "https://personalcar.netlify.app/"
 ]
 
 
@@ -216,8 +224,8 @@ CELERY_BEAT_SCHEDULE = {
     #     'task': 'users.tasks.send_email_via_celery',
     #     'schedule': 10.0,  # Run every 60 seconds (adjust as needed)
     # },
-     'my-scheduled-task2': {
-        'task': 'users.tasks.add',
-        'schedule': 10.0,  # Run every 60 seconds (adjust as needed)
-    },
+    #  'my-scheduled-task2': {
+    #     'task': 'users.tasks.add',
+    #     'schedule': 10.0,  # Run every 60 seconds (adjust as needed)
+    # },
 }
