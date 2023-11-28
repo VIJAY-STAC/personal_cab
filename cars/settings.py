@@ -229,5 +229,3 @@ CELERY_BEAT_SCHEDULE = {
     #     'schedule': 10.0,  # Run every 60 seconds (adjust as needed)
     # },
 }
-
-
